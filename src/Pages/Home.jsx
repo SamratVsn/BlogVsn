@@ -7,42 +7,37 @@ import Blogs from '../Components/Blogs';
 function Home() {
   const [loading, setLoading] = useState(true);
 
-  // Simulate page load (or you can tie this to API/data loading)
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000); // 1.2s loading
+    const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-blue-50 via-sky-100 to-sky-200">
+    <div className="min-h-screen bg-gradient-to-tr from-[#0f172a] via-[#1e3a8a] to-[#0f172a] text-white">
       <AnimatePresence>
         {loading ? (
           <motion.div
             key="loader"
-            className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-tr from-blue-100 via-sky-200 to-sky-300 z-50"
+            className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-tr from-[#0f172a] via-[#1e3a8a] to-[#0f172a] z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Rotating circle */}
+            {/* Neon Rotating Loader */}
             <motion.div
-              className="w-16 h-16 border-4 border-t-sky-500 border-b-sky-700 rounded-full mb-6"
-              animate={{ rotate: 360, opacity: [1, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
+              className="w-16 h-16 border-4 border-t-cyan-400 border-b-sky-600 rounded-full mb-6 shadow-[0_0_20px_#22d3ee]"
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 1.2, ease: 'linear' }}
             />
 
-            {/* Staggered text: BLOG VSN */}
+            {/* Futuristic Text */}
             <motion.div
-              className="flex space-x-4 text-4xl sm:text-5xl md:text-6xl font-extrabold text-sky-700 mb-4"
+              className="flex space-x-4 text-4xl sm:text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-cyan-400 via-sky-300 to-cyan-200 bg-clip-text text-transparent drop-shadow-lg mb-4"
               initial="hidden"
               animate="visible"
               variants={{
-                visible: {
-                  transition: {
-                    staggerChildren: 0.4,
-                  },
-                },
+                visible: { transition: { staggerChildren: 0.3 } },
               }}
             >
               {["BLOG", "VSN"].map((word, index) => (
@@ -50,26 +45,30 @@ function Home() {
                   key={index}
                   variants={{
                     hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, ease: 'easeOut' },
+                    },
                   }}
+                  className="tracking-wider"
                 >
                   {word}
                 </motion.span>
               ))}
             </motion.div>
 
-            {/* Loader subtitle */}
+            {/* Subtitle */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
-              className="text-lg sm:text-xl font-semibold text-sky-600"
+              className="text-lg sm:text-xl font-semibold text-cyan-300 tracking-wide drop-shadow-md"
             >
-              THE BLOG IS ON
+              ⚡ THE BLOG IS ON ⚡
             </motion.div>
           </motion.div>
-
         ) : (
           <motion.div
             key="content"
@@ -82,17 +81,19 @@ function Home() {
             <Header />
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8"
             >
               <Search />
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
+              className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-6"
             >
               <Blogs />
             </motion.div>
