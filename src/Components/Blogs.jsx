@@ -1,9 +1,10 @@
 import React from 'react'
+import IntroPost from '../Components/IntroPost'
 
 function Blogs() {
   return (
     <div>
-      BLOGS
+    <IntroPost/>
     </div>
   )
 }
