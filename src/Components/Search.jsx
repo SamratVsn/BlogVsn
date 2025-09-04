@@ -14,7 +14,7 @@ export default function Search() {
   return (
     <div className="flex flex-col items-center justify-center mt-10 px-4">
       {/* Banner with Overlay Glow */}
-      <div className="relative w-full max-w-4xl mb-8">
+      <div className="relative w-full max-w-4xl mb-8 z-0">
         <img
           src={Banner}
           alt="Banner"
@@ -41,11 +41,10 @@ export default function Search() {
           <div
             key={index}
             onClick={() => setActive(index)}
-            className={`cursor-pointer px-5 py-2 rounded-full text-sm font-medium tracking-wide transition-all shadow-md ${
-              index === active
+            className={`cursor-pointer px-5 py-2 rounded-full text-sm font-medium tracking-wide transition-all shadow-md ${index === active
                 ? "bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-900 font-semibold shadow-cyan-400/40 hover:shadow-cyan-400/70"
                 : "bg-[#0f172a]/70 text-slate-200 border border-cyan-400/30 hover:bg-cyan-400/20"
-            }`}
+              }`}
           >
             {item.name}
           </div>

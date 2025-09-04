@@ -10,7 +10,7 @@ function Header() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="h-20 w-full bg-gradient-to-r from-[#0f172a] via-[#1e3a8a] to-[#0f172a] shadow-lg backdrop-blur-xl border-b border-blue-500/30">
+    <header className="relative z-50 h-20 w-full bg-gradient-to-r from-[#0f172a] via-[#1e3a8a] to-[#0f172a] shadow-lg backdrop-blur-xl border-b border-blue-500/30">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between h-full">
         {/* Logo */}
         <div className="flex items-center gap-3">
@@ -82,7 +82,7 @@ function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden absolute top-20 left-0 w-full bg-gradient-to-b from-[#0f172a]/95 via-[#1e3a8a]/95 to-[#0f172a]/95 backdrop-blur-lg border-b border-cyan-500/30 shadow-lg"
+              className="md:hidden absolute top-20 left-0 w-full z-50 bg-gradient-to-b from-[#0f172a]/100 via-[#1e3a8a]/100 to-[#0f172a]/100 backdrop-blur-3xl border-b border-cyan-500/30 shadow-lg"
             >
               <div className="flex flex-col px-6 py-4 space-y-4 text-cyan-100 font-medium">
                 <Link onClick={closeMenu} to="/" className="hover:text-cyan-300 transition">
