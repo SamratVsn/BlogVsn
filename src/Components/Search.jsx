@@ -7,13 +7,13 @@ export default function Search() {
     { id: 1, name: "All" },
     { id: 2, name: "GoogleAPI" },
     { id: 3, name: "Created Here" },
-  ];
+];
 
   const [active, setActive] = useState(0);
 
   return (
     <div className="flex flex-col items-center justify-center mt-10 px-4">
-      {/* Banner with Overlay Glow */}
+      
       <div className="relative w-full max-w-4xl mb-8 z-0">
         <img
           src={Banner}
