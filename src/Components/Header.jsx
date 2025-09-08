@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import reactLogo from '../assets/react.svg';
 import { Link } from 'react-router-dom';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   return (
     <header className="relative z-50 h-20 w-full bg-gradient-to-r from-[#0f172a] via-[#1e3a8a] to-[#0f172a] shadow-lg backdrop-blur-xl border-b border-blue-500/30">
@@ -43,12 +50,15 @@ function Header() {
           ))}
 
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link
-              to="/login"
-              className="bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-900 font-semibold px-5 py-2 rounded-2xl shadow-lg hover:shadow-cyan-400/50 transition"
-            >
-              Login / Sign Up
-            </Link>
+            {user ? (
+              <Link to="/login" className="bg-gradient-to-r from-red-500 to-pink-600 text-white font-semibold px-5 py-2 rounded-2xl shadow-lg hover:shadow-red-500/50 transition" >
+                Logout
+              </Link>
+            ) : (
+              <Link to="/login" className="bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-900 font-semibold px-5 py-2 rounded-2xl shadow-lg hover:shadow-cyan-400/50 transition">
+                Login / Sign in
+              </Link>
+            )}
           </motion.div>
         </div>
 
@@ -91,9 +101,7 @@ function Header() {
                 <Link onClick={closeMenu} to="/contact" className="hover:text-cyan-300 transition">
                   Contact
                 </Link>
-                <Link onClick={closeMenu} to="/login" className="hover:text-cyan-300 transition">
-                  Login / Sign Up
-                </Link>
+                {user ? (<Link onClick={closeMenu} to="/login" className="hover:text-cyan-300 transition">Logout</Link>) : (<Link onClick={closeMenu} to="/login" className="hover:text-cyan-300 transition">Login / Sign in</Link>)}
               </div>
             </motion.div>
           )}
