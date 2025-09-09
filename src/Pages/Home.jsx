@@ -7,7 +7,7 @@ import Portfolio from '../assets/Portfolio.png'
 
 function Home() {
   const [loading, setLoading] = useState(true);
-  const [showAds, setShowAds] = useState(false)
+  const [showAds, setShowAds] = useState(false);
 
   useEffect(() => {
     let timer;

@@ -8,10 +8,10 @@ export default function Login() {
   const [user, setUser] = useState(null);
   const [statusMessage, setStatusMessage] = useState("");
 
-   const handleNavigate = (path) => {
+  const handleNavigate = (path) => {
     setTimeout(() => {
       navigate(path);
-    }, 2000); 
+    }, 2000);
   };
 
   useEffect(() => {
@@ -29,70 +29,90 @@ export default function Login() {
         <div className="w-full flex flex-col items-center mb-8">
           {user ? (
             <>
-              <p className="text-3xl font-extrabold text-cyan-400 drop-shadow-lg mb-2 text-center">
-                Welcome Back, {user.name}
-              </p>
-              <p className="text-slate-300 mb-6 text-center">
-                Logout by pressing the button below
-              </p>
-              <button
-                onClick={() => {
-                  googleLogout();
-                  localStorage.removeItem("user");
-                  setUser(null);
-                  setStatusMessage("✅ Logout successful! Redirecting...");
-                  handleNavigate("/");
-                }}
-                className="px-6 py-3 w-full text-center text-lg font-semibold rounded-xl bg-gradient-to-r from-red-500 to-pink-600 text-white shadow-md hover:shadow-red-500/50 transition"
-              >
-                🚪 Logout
-              </button>
+              <div className="max-w-md mx-auto bg-slate-800 rounded-lg shadow-md p-4 sm:p-6 md:p-8 lg:p-10">
+                <h1 className="text-2xl font-bold text-blue-400 mb-4 text-center">
+                  Welcome Back!
+                </h1>
+
+                <div className="text-center mb-6">
+                  <p className="text-slate-300 mb-2">Hello, {user.name}</p>
+                  <p className="text-sm text-slate-400">
+                    Ready to continue where you left off?
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => {
+                    googleLogout();
+                    localStorage.removeItem("user");
+                    setUser(null);
+                    setStatusMessage("Logged out successfully!");
+                    handleNavigate("/");
+                  }}
+                  className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
+                >
+                  Logout
+                </button>
+              </div>
             </>
           ) : (
             <>
-              <h1 className="text-4xl font-extrabold text-cyan-400 drop-shadow-lg mb-4">
-                Hello User 👋
-              </h1>
-              <p className="text-slate-300 mb-10 text-center">
-                Sign in with your Google account to continue
-              </p>
-              <GoogleLogin
-                onSuccess={(credentialResponse) => {
-                  const decoded = jwtDecode(credentialResponse.credential);
-                  localStorage.setItem("user", JSON.stringify(decoded));
-                  setUser(decoded);
-                  setStatusMessage("✅ Login successful! Redirecting...");
-                  handleNavigate("/");
-                }}
-                onError={() => console.log("Login Failed")}
-                shape="pill"
-                theme="filled_blue"
-                size="large"
-                width="280"
-              />
+              <div className="max-w-md mx-auto bg-slate-800 rounded-lg shadow-md p-4 sm:p-6 md:p-8 lg:p-10">
+                <h1 className="text-2xl font-bold text-blue-400 mb-4 text-center">
+                  Hello User!
+                </h1>
+
+                <div className="text-center mb-6">
+                  <p className="text-slate-300 mb-2">Welcome to our platform</p>
+                  <p className="text-sm text-slate-400">
+                    Sign in with your Google account to continue
+                  </p>
+                </div>
+
+                <div className="flex justify-center">
+                  <GoogleLogin
+                    onSuccess={(credentialResponse) => {
+                      const decoded = jwtDecode(credentialResponse.credential);
+                      localStorage.setItem("user", JSON.stringify(decoded));
+                      setUser(decoded);
+                      setStatusMessage("Login successful! Redirecting...");
+                      handleNavigate("/");
+                    }}
+                    onError={() => console.log("Login Failed")}
+                    shape="pill"
+                    theme="filled_blue"
+                    size="large"
+                    width="280"
+                  />
+                </div>
+              </div>
             </>
           )}
         </div>
 
-        {/* Divider */}
-        <div className="flex items-center w-full mb-8">
-          <div className="flex-grow border-t border-cyan-500/30"></div>
-          <span className="mx-3 text-slate-400 text-sm">or</span>
-          <div className="flex-grow border-t border-cyan-500/30"></div>
-        </div>
+        <div className="w-full max-w-sm sm:max-w-md mx-auto px-4 sm:px-0">
+          {/* Simple divider */}
+          <div className="flex items-center w-full mb-4 sm:mb-6">
+            <div className="flex-grow border-t border-slate-600"></div>
+            <span className="mx-2 sm:mx-3 text-slate-400 text-xs sm:text-sm">or</span>
+            <div className="flex-grow border-t border-slate-600"></div>
+          </div>
 
-        {/* Back Button */}
-        <Link
-          to="/"
-          className="px-6 py-3 w-full text-center text-lg font-semibold rounded-xl bg-gradient-to-r from-cyan-400 to-sky-500 text-slate-900 shadow-md hover:shadow-cyan-400/50 transition"
-        >
-          ⬅ Back to Home
-        </Link>
-        {statusMessage && (
-          <p className="mt-6 text-green-400 font-semibold text-center animate-pulse">
-            {statusMessage}
-          </p>
-        )}
+          {/* Back Button */}
+          <Link
+            to="/"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-md transition-colors duration-200 text-center block text-sm sm:text-base"
+          >
+            Back to Home
+          </Link>
+
+          {/* Status Message */}
+          {statusMessage && (
+            <p className="mt-3 sm:mt-4 text-green-400 text-center text-sm sm:text-base px-2">
+              {statusMessage}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
