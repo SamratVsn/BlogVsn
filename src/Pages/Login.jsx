@@ -63,7 +63,7 @@ export default function Login() {
                 </h1>
 
                 <div className="text-center mb-6">
-                  <p className="text-slate-300 mb-2">Welcome to our platform</p>
+                  <p className="text-slate-300 mb-2">Welcome to BlogVsn by Samrat</p>
                   <p className="text-sm text-slate-400">
                     Sign in with your Google account to continue
                   </p>
