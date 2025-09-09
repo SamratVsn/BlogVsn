@@ -38,16 +38,24 @@ function Header() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 font-medium">
-          {['Home', 'Contact'].map((item, idx) => (
-            <Link
-              key={idx}
-              to={item === 'Home' ? '/' : '/contact'}
-              className="relative text-sky-100 hover:text-cyan-300 transition group"
-            >
-              {item}
-              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-cyan-400 transition-all group-hover:w-full"></span>
-            </Link>
-          ))}
+          {['Home', 'MyBlogs', 'Contact'].map((item, idx) => {
+            const paths = {
+              Home: "/",
+              MyBlogs: "/myblogs",
+              Contact: "/contact"
+            };
+
+            return (
+              <Link
+                key={idx}
+                to={paths[item]}
+                className="relative text-sky-100 hover:text-cyan-300 transition group"
+              >
+                {item}
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-cyan-400 transition-all group-hover:w-full"></span>
+              </Link>
+            );
+          })}
 
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             {user ? (
@@ -97,6 +105,9 @@ function Header() {
               <div className="flex flex-col px-6 py-4 space-y-4 text-cyan-100 font-medium">
                 <Link onClick={closeMenu} to="/" className="hover:text-cyan-300 transition">
                   Home
+                </Link>
+                <Link onClick={closeMenu} to="/myblogs" className="hover:text-cyan-300 transition">
+                  MyBlogs
                 </Link>
                 <Link onClick={closeMenu} to="/contact" className="hover:text-cyan-300 transition">
                   Contact

@@ -153,7 +153,6 @@ function Home() {
               </a>
             </div>
 
-            {/* Footer */}
             <p className="mt-6 text-center text-sm text-white/70">🚀 Popup for my website</p>
           </motion.div>
         </div>
