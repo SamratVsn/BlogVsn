@@ -37,12 +37,10 @@ function IntroPost() {
           key={post.id}
           className="max-w-3xl w-full p-6 rounded-2xl bg-[#0f172a]/70 backdrop-blur-md border border-cyan-400/30 shadow-lg hover:shadow-cyan-400/50 transition transform hover:scale-[1.02]"
         >
-          {/* Title */}
           <h2 className="text-2xl font-extrabold mb-3 bg-gradient-to-r from-cyan-400 to-sky-300 bg-clip-text text-transparent hover:underline decoration-cyan-400">
             {post.title}
           </h2>
 
-          {/* Snippet */}
           <p
             className="text-slate-300 mb-4 leading-relaxed"
             dangerouslySetInnerHTML={{
@@ -50,7 +48,6 @@ function IntroPost() {
             }}
           />
 
-          {/* Read more */}
           <a
             href={post.url}
             target="_blank"

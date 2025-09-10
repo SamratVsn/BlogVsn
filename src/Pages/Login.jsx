@@ -85,6 +85,8 @@ export default function Login() {
                     width="280"
                   />
                 </div>
+
+        <small>Don't have an account? <Link to="/register"> Sign in</Link></small>
               </div>
             </>
           )}
