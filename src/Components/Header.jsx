@@ -106,9 +106,6 @@ function Header() {
                 <Link onClick={closeMenu} to="/" className="hover:text-cyan-300 transition">
                   Home
                 </Link>
-                <Link onClick={closeMenu} to="/myblogs" className="hover:text-cyan-300 transition">
-                  MyBlogs
-                </Link>
                 <Link onClick={closeMenu} to="/contact" className="hover:text-cyan-300 transition">
                   Contact
                 </Link>
