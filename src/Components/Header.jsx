@@ -9,6 +9,7 @@ function Header() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+  
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -38,10 +39,9 @@ function Header() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 font-medium">
-          {['Home', 'MyBlogs', 'Contact'].map((item, idx) => {
+          {['Home', 'Contact'].map((item, idx) => {
             const paths = {
               Home: "/",
-              MyBlogs: "/myblogs",
               Contact: "/contact"
             };
 
